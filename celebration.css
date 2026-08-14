@@ -1,0 +1,638 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    background:
+        radial-gradient(circle at 50% 45%, #ffdce8 0%, transparent 28%),
+        linear-gradient(135deg, #ffb3c7, #ff6b91, #ff91ad);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* =================================
+   MOVING BACKGROUND
+================================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: .55;
+    animation: floatingGlow 8s ease-in-out infinite alternate;
+}
+
+.glow1 {
+    width: 350px;
+    height: 350px;
+    background: #fff;
+    left: -120px;
+    top: -100px;
+}
+
+.glow2 {
+    width: 400px;
+    height: 400px;
+    background: #ff477e;
+    right: -150px;
+    bottom: -150px;
+    animation-delay: 2s;
+}
+
+.glow3 {
+    width: 220px;
+    height: 220px;
+    background: #ffd166;
+    left: 45%;
+    top: 25%;
+    opacity: .3;
+    animation-delay: 1s;
+}
+
+@keyframes floatingGlow {
+
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(70px, -50px) scale(1.25);
+    }
+}
+
+
+/* =================================
+   ROTATING LIGHT RINGS
+================================= */
+
+body::before,
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    width: 600px;
+    height: 600px;
+
+    border-radius: 50%;
+
+    border: 2px solid rgba(255, 255, 255, .13);
+
+    pointer-events: none;
+
+    animation: rotateRing 18s linear infinite;
+}
+
+body::before {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+body::after {
+
+    width: 850px;
+    height: 850px;
+
+    border-style: dashed;
+
+    animation-duration: 30s;
+    animation-direction: reverse;
+}
+
+@keyframes rotateRing {
+
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+
+/* =================================
+   MAIN CARD
+================================= */
+
+.card {
+
+    position: relative;
+
+    width: min(560px, 90vw);
+
+    padding: 45px 35px 40px;
+
+    text-align: center;
+
+    border-radius: 35px;
+
+    background: rgba(255, 255, 255, .20);
+
+    border: 1px solid rgba(255, 255, 255, .65);
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    box-shadow:
+        0 35px 100px rgba(120, 20, 55, .28),
+        inset 0 1px 0 rgba(255,255,255,.7);
+
+    z-index: 10;
+
+    animation:
+        cardEntrance 1.3s cubic-bezier(.16,1,.3,1) forwards,
+        cardFloat 5s ease-in-out 1.3s infinite;
+}
+
+
+@keyframes cardEntrance {
+
+    0% {
+        opacity: 0;
+        transform: scale(.35) translateY(120px) rotate(-5deg);
+    }
+
+    65% {
+        opacity: 1;
+        transform: scale(1.07) translateY(-10px) rotate(1deg);
+    }
+
+    100% {
+        transform: scale(1) translateY(0) rotate(0);
+    }
+}
+
+
+@keyframes cardFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+
+/* =================================
+   TOP PARTY EMOJI
+================================= */
+
+.top-emoji {
+
+    position: absolute;
+
+    left: 50%;
+    top: -45px;
+
+    transform: translateX(-50%);
+
+    font-size: 65px;
+
+    filter: drop-shadow(0 8px 15px rgba(150,30,60,.25));
+
+    animation: partyEmoji 1.4s ease-in-out infinite alternate;
+}
+
+@keyframes partyEmoji {
+
+    0% {
+        transform: translateX(-50%) rotate(-12deg) scale(.9);
+    }
+
+    100% {
+        transform: translateX(-50%) rotate(12deg) scale(1.15);
+    }
+}
+
+
+/* =================================
+   CAKE
+================================= */
+
+.cake {
+
+    font-size: 100px;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    filter:
+        drop-shadow(0 12px 15px rgba(150,30,60,.2));
+
+    animation: cakeAnimation 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes cakeAnimation {
+
+    0% {
+        transform: translateY(0) rotate(-3deg) scale(1);
+    }
+
+    100% {
+        transform: translateY(-15px) rotate(3deg) scale(1.08);
+    }
+}
+
+
+/* =================================
+   HEADING
+================================= */
+
+h1 {
+
+    font-size: clamp(45px, 8vw, 70px);
+
+    font-weight: 900;
+
+    color: white;
+
+    margin-bottom: 8px;
+
+    text-shadow:
+        0 5px 20px rgba(180,20,70,.35);
+
+    animation: textPop .8s ease 1s both;
+}
+
+@keyframes textPop {
+
+    from {
+        opacity: 0;
+        transform: scale(.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =================================
+   SUBTITLE
+================================= */
+
+.subtitle {
+
+    color: white;
+
+    font-size: 19px;
+
+    margin-bottom: 20px;
+
+    animation: fadeUp .8s ease 1.2s both;
+}
+
+.subtitle span {
+
+    font-weight: 800;
+
+    background: rgba(220,30,80,.35);
+
+    padding: 4px 12px;
+
+    border-radius: 30px;
+}
+
+
+/* =================================
+   DIVIDER
+================================= */
+
+.divider {
+
+    width: 120px;
+    height: 4px;
+
+    margin: 20px auto;
+
+    border-radius: 20px;
+
+    background: white;
+
+    box-shadow:
+        0 0 15px rgba(255,255,255,.8);
+
+    animation: dividerGrow 1s ease 1.5s both;
+}
+
+@keyframes dividerGrow {
+
+    from {
+        width: 0;
+        opacity: 0;
+    }
+
+    to {
+        width: 120px;
+        opacity: 1;
+    }
+}
+
+
+/* =================================
+   BUT STILL
+================================= */
+
+h2 {
+
+    color: white;
+
+    font-size: 32px;
+
+    margin-bottom: 15px;
+
+    animation: fadeUp .8s ease 1.7s both;
+}
+
+
+/* =================================
+   BIRTHDAY MESSAGE
+================================= */
+
+.birthday {
+
+    color: white;
+
+    font-size: 36px;
+
+    font-weight: 900;
+
+    margin-bottom: 12px;
+
+    text-shadow:
+        0 0 10px rgba(255,255,255,.5),
+        0 5px 20px rgba(190,20,70,.35);
+
+    animation:
+        birthdayReveal 1s ease 2s both,
+        birthdayGlow 1.5s ease-in-out 3s infinite alternate;
+}
+
+@keyframes birthdayReveal {
+
+    0% {
+        opacity: 0;
+        transform: scale(.5) rotate(-5deg);
+    }
+
+    70% {
+        transform: scale(1.12) rotate(2deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+@keyframes birthdayGlow {
+
+    from {
+        text-shadow:
+            0 0 5px rgba(255,255,255,.3),
+            0 5px 20px rgba(190,20,70,.3);
+    }
+
+    to {
+        text-shadow:
+            0 0 25px rgba(255,255,255,.9),
+            0 5px 25px rgba(190,20,70,.5);
+    }
+}
+
+
+/* =================================
+   WISH
+================================= */
+
+.wish {
+
+    color: rgba(255,255,255,.95);
+
+    font-size: 19px;
+
+    line-height: 1.7;
+
+    animation: fadeUp .9s ease 2.4s both;
+}
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =================================
+   BOTTOM HEARTS
+================================= */
+
+.bottom-hearts {
+
+    margin-top: 25px;
+
+    font-size: 25px;
+
+    animation:
+        heartPulse 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes heartPulse {
+
+    from {
+        transform: scale(.95);
+    }
+
+    to {
+        transform: scale(1.15);
+    }
+}
+
+
+/* =================================
+   FALLING HEARTS
+================================= */
+
+.hearts {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 5;
+}
+
+.hearts span {
+
+    position: absolute;
+
+    top: -60px;
+
+    opacity: 0;
+
+    filter:
+        drop-shadow(0 3px 5px rgba(150,20,60,.2));
+
+    animation: heartFall linear infinite;
+}
+
+@keyframes heartFall {
+
+    0% {
+        transform:
+            translateY(-70px)
+            translateX(0)
+            rotate(0deg)
+            scale(.7);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: .9;
+    }
+
+    50% {
+        transform:
+            translateY(50vh)
+            translateX(35px)
+            rotate(180deg)
+            scale(1);
+    }
+
+    90% {
+        opacity: .8;
+    }
+
+    100% {
+        transform:
+            translateY(110vh)
+            translateX(-35px)
+            rotate(360deg)
+            scale(.7);
+
+        opacity: 0;
+    }
+}
+
+
+/* =================================
+   CONFETTI
+================================= */
+
+.confetti {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 6;
+}
+
+.confetti span {
+
+    position: absolute;
+
+    top: -20px;
+
+    width: 9px;
+    height: 16px;
+
+    border-radius: 3px;
+
+    opacity: .9;
+
+    animation: confettiFall linear infinite;
+}
+
+@keyframes confettiFall {
+
+    0% {
+        transform:
+            translateY(-30px)
+            rotate(0deg);
+    }
+
+    100% {
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+    }
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+    .card {
+        width: 90vw;
+        padding: 40px 20px 30px;
+    }
+
+    .cake {
+        font-size: 75px;
+    }
+
+    h1 {
+        font-size: 48px;
+    }
+
+    h2 {
+        font-size: 26px;
+    }
+
+    .birthday {
+        font-size: 28px;
+    }
+
+    .wish {
+        font-size: 16px;
+    }
+
+}
